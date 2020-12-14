@@ -1,6 +1,8 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../sass/components/filmDetails.scss';
+import Marquee from './Marquee.jsx';
 
 const FilmDetails = ({ selectedFilm }) => {
   let details;
@@ -13,6 +15,7 @@ const FilmDetails = ({ selectedFilm }) => {
           Starwars:
           {' '}
           <span>{selectedFilm.title}</span>
+          <Marquee text={selectedFilm.opening_crawl} />
         </h2>
       </div>
     );
