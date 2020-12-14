@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "lint": "eslint --fix -c .eslintrc.json ./**/*.js --ignore-path .eslintignore"
+    "lint": "eslint --fix -c .eslintrc.json ./**/*.js ./**/*.jsx --ignore-path .eslintignore"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
