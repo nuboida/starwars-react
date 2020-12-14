@@ -3,37 +3,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../sass/components/filmDetails.scss';
 import Marquee from './Marquee.jsx';
+import Characters from './Characters.jsx';
 
 const FilmDetails = ({ selectedFilm }) => {
-  let details;
-  if (!selectedFilm.title) {
-    details = <div className="filmDetail"><h1>Starwars</h1></div>;
-  } else {
-    details = (
-      <div className="filmDetail">
-        <h2>
-          Starwars:
+	let details;
+	if (!selectedFilm.title) {
+		details = <div className="filmDetail"><h1>Starwars</h1></div>;
+	} else {
+		details = (
+			<div className="filmDetail">
+				<h2>
+					Starwars:
           {' '}
-          <span>{selectedFilm.title}</span>
-          <Marquee text={selectedFilm.opening_crawl} />
-        </h2>
-      </div>
-    );
-  }
+					<span>{selectedFilm.title}</span>
+				</h2>
+				<Marquee text={selectedFilm.opening_crawl} />
+				<Characters charactersUrl={selectedFilm.characters} />
+			</div>
+		);
+	}
 
-  return (
-    <div className="filmDetails">
-      {details}
-    </div>
-  );
+	return (
+		<div className="filmDetails">
+			{details}
+		</div>
+	);
 };
 
 FilmDetails.propTypes = {
-  selectedFilm: PropTypes.objectOf(PropTypes.any),
+	selectedFilm: PropTypes.objectOf(PropTypes.any),
 };
 
 FilmDetails.defaultProps = {
-  selectedFilm: {},
+	selectedFilm: {},
 };
 
 export default FilmDetails;
