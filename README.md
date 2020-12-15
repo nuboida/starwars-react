@@ -2,8 +2,8 @@ This repository is an implementation of the Starwars database with React in acco
 
 ## Include Technologies & Libraries
 - [React](reactjs.org);
--[webpack](webpack.js.org);
--[express](expressjs.com)
+- [webpack](webpack.js.org);
+- [express](expressjs.com)
 
 ## Install Dependencies
 run ``` npm install ``` to install all dependencies.

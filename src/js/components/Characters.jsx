@@ -1,9 +1,8 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable no-tabs */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import '../../sass/components/characters.scss';
 import { fetchCharacter } from '../api/api';
 import Character from './Character.jsx';
 
