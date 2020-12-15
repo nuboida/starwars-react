@@ -11,6 +11,8 @@ const Characters = ({ charactersUrl }) => {
   const [allCharacters, setAllCharacters] = useState([]);
   const [filterCharacters, setFilterCharacters] = useState(false);
   const [charactersByGender, setCharactersByGender] = useState(null);
+  const [descend, setDescend] = useState(false);
+  const [sortBy, setSortBy] = useState(null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -54,6 +56,30 @@ const Characters = ({ charactersUrl }) => {
     return true;
   };
 
+  const sortCharacters = (e) => {
+    setDescend(true);
+    const column = e.target.cellIndex;
+    switch (column) {
+      case 0: setSortBy('name');
+        break;
+      case 1: setSortBy('gender');
+        break;
+      case 2: setSortBy('height');
+        break;
+      default: setSortBy(null);
+        break;
+    }
+    const descending = sortBy && !descend;
+
+    setDescend(descending);
+    setAllCharacters(allCharacters.sort((a, b) => {
+      if (sortBy === 'height') {
+        return descending ? (a[sortBy] - b[sortBy]) : (b[sortBy] - a[sortBy]);
+      }
+      return descending ? (a[sortBy] < b[sortBy] ? 1 : -1) : (a[sortBy] > b[sortBy] ? 1 : -1);
+    }));
+  };
+
   return (
     <div className="characters">
       <div className="body-header">
@@ -71,9 +97,9 @@ const Characters = ({ charactersUrl }) => {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Height</th>
+            <th onDoubleClick={sortCharacters}>Name</th>
+            <th onDoubleClick={sortCharacters}>Gender</th>
+            <th onDoubleClick={sortCharacters}>Height</th>
           </tr>
         </thead>
         {
