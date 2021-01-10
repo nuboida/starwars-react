@@ -17,21 +17,55 @@
     }
 
     table {
-        width: 100%;
+        width: 83%;
         padding: 0 10px;
-        border-collapse: collapse;
-        text-align: center;
+        border-collapse: separate;
+		text-align: center;
+		margin: 0 0 2em 4em;
+		border-collapse: collapse;
+		border-spacing: 0;
+		text-indent: initial;
 
-        th {
-            padding: 1rem 0;
-            font-size: 18px;
-            color: yellow;
-        }
+			thead {
+				border-bottom: 2px solid yellow;
+				display: table-header-group;
 
-        td {
-            padding: 0.7rem 0;
-            border-bottom: 1px solif yellow;
-            border-spacing: 0;
-        }
+				th {
+					padding: 0 0.75rem 0.75rem 0.75rem;
+					font-size: 18px;
+					font-weight: 600;
+					color: yellow;
+					text-align: left;
+					display: table-cell;
+					cursor: pointer;
+					}
+				}
+
+				tbody {
+					tr {
+						&:nth-child(2n) {
+							background-color: rgba(255, 255, 0, 0.3);
+							border-left: 0;
+							border-right: 0;
+							color: wheat;
+							display: table-row;
+						}
+						td {
+							padding: 0.75rem 0.75rem;
+							text-align: left;
+							display: table-cell;
+						}
+					}
+				}
+				tfoot {
+					tr {
+						td {
+							text-align: left;
+							padding: 1rem 0.75rem;
+							background-color: rgba(255, 255, 0, 0.566);
+							color: white;
+						}
+					}
+				}
     }
 }

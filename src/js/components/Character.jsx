@@ -1,10 +1,10 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 const Character = ({ characters }) => {
-  let noOfCharacters;
-
   const abbrGender = (gender) => {
     if (gender === 'male') {
       return 'M';
@@ -14,7 +14,7 @@ const Character = ({ characters }) => {
     return 'N/A';
   };
 
-  const addHeight = () => characters.reduce((acca, character) => acca += new Number(character.height), 0);
+  const addHeight = () => characters.reduce((a, character) => a += Number(character.height), 0);
 
   const heightToFeet = (n) => {
     const realFeet = ((n * 0.394) / 12);
@@ -26,27 +26,18 @@ const Character = ({ characters }) => {
   return (
     <>
       <tbody>
-        {characters.map((character, i) => {
-				  noOfCharacters = i + 1;
-				  return (
-  <tr key={`character${i}`}>
-    <td>{character.name}</td>
-    <td>{abbrGender(character.gender)}</td>
-    <td>{character.height}</td>
-  </tr>
-				  );
-        })}
+        {characters.map((character, i) => (
+          <tr key={`character${i}`}>
+            <td>{character.name}</td>
+            <td>{abbrGender(character.gender)}</td>
+            <td>{character.height}</td>
+          </tr>
+        ))}
       </tbody>
       <tfoot>
         <tr>
-          <td rowSpan="2">
-            No Of Characters:
-            {' '}
-            {noOfCharacters}
-          </td>
+          <td colSpan="2" />
           <td>
-            Sum Of Heights:
-            {' '}
             {heightToFeet(addHeight())}
           </td>
         </tr>
