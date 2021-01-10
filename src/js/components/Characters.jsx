@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
@@ -17,6 +18,9 @@ const Characters = ({ charactersUrl }) => {
     const abortController = new AbortController();
     const { signal } = abortController;
     setAllCharacters([]);
+    setFilterCharacters(false);
+    const genderSelector = document.querySelector('#gender_select');
+    genderSelector.selectedIndex = 0;
 
     charactersUrl.map((url) => {
       fetchCharacter(url, signal).then((data) => {
@@ -82,7 +86,11 @@ const Characters = ({ charactersUrl }) => {
   return (
     <div className="characters">
       <div className="body-header">
-        <h3>Characters</h3>
+        <h3>
+          Characters:
+          {' '}
+          <span>{`(${!filterCharacters ? allCharacters.length : charactersByGender})`}</span>
+        </h3>
         <div className="gender">
           <label htmlFor="gender_select">Gender: </label>
           <select id="gender_select" name="gender_select" defaultValue="gender" onChange={handlerGenderChange}>
@@ -101,11 +109,7 @@ const Characters = ({ charactersUrl }) => {
             <th onDoubleClick={sortCharacters}>Height</th>
           </tr>
         </thead>
-        {
-					filterCharacters
-					  ? <Character characters={charactersByGender} />
-					  : <Character characters={allCharacters} />
-				}
+        <Character characters={filterCharacters ? charactersByGender : allCharacters} />
       </table>
     </div>
   );
